@@ -1,4 +1,34 @@
-import React from "react";
+import React from 'react';
+
+// Dynamic metadata generation
+export async function generateMetadata({ params }) {
+  const { slug = [] } = params;
+  
+  const title = slug.length === 0 
+    ? 'All Products' 
+    : `${slug.join(' > ')} - Products`;
+    
+  const description = slug.length === 0
+    ? 'Browse all our products'
+    : `Browse our ${slug.join('/')} products`;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: 'website',
+    },
+    // You can also add product-specific structured data
+    alternates: {
+      canonical: `/products/${slug.join('/')}`,
+    },
+  }
+}
+
+const ProductsPage = ({ params }) => {
+  const { slug = [] } = params; // Default to empty array for root pathrt React from "react";
 
 const ProductsPage = ({ params }) => {
   const { slug = [] } = params; // Default to empty array for root path

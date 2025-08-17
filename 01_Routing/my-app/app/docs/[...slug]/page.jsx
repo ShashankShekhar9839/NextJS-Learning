@@ -1,5 +1,19 @@
 import React from "react";
 
+// Dynamic metadata generation
+export async function generateMetadata({ params }) {
+  const { slug } = params;
+
+  return {
+    title: `${slug.join(" > ")} - Documentation`,
+    description: `Documentation page for ${slug.join("/")}`,
+    openGraph: {
+      title: `${slug.join(" > ")} - Documentation`,
+      description: `Learn more about ${slug.join("/")}`,
+    },
+  };
+}
+
 const DocsPage = ({ params }) => {
   const { slug } = params;
 
