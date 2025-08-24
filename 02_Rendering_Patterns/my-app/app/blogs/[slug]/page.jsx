@@ -1,6 +1,17 @@
 import { blogs } from "../data";
 import { notFound } from "next/navigation";
 
+// Force dynamic rendering
+// export const dynamic = "force-dynamic";
+
+// Add generateStaticParams to pre-render all blog pages
+export async function generateStaticParams() {
+  // Return an array of objects with slug params
+  return blogs.map((blog) => ({
+    slug: blog.id,
+  }));
+}
+
 const BlogPost = ({ params }) => {
   //   we get part of the url in params as slug in next js
 
