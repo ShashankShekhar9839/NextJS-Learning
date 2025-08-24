@@ -1,0 +1,66 @@
+Next.js Routing Concepts
+=======================
+
+1. File-based Routing
+--------------------
+- Next.js uses a file-based routing system
+- Pages are created by adding files to the 'app' directory
+- Basic route structure:
+  app/
+  ├── page.jsx         (home route /)
+  ├── about/
+  │   └── page.jsx    (about route /about)
+  └── blogs/
+      └── page.jsx    (blogs route /blogs)
+
+2. Dynamic Routes
+---------------
+- Created using square brackets [parameter]
+- Example structure:
+  app/
+  └── blogs/
+      ├── page.jsx
+      └── [slug]/
+          └── page.jsx    (handles routes like /blogs/1, /blogs/2)
+- Access parameters using the params prop:
+  - params.slug contains the dynamic value from URL
+
+3. Layout Files
+-------------
+- layout.jsx files define shared layouts
+- Automatically wrap child routes
+- Common use: shared headers, navigation, footers
+- Example:
+  app/
+  ├── layout.jsx      (root layout, applies to all pages)
+  └── blogs/
+      └── layout.jsx  (layout specific to blog section)
+
+4. Link Component
+---------------
+- Used for client-side navigation
+- Provides automatic prefetching
+- Example: <Link href="/blogs">Blogs</Link>
+- Can handle dynamic routes: <Link href={`/blogs/${blog.id}`}>
+
+5. Navigation
+-----------
+- Static navigation using Link component
+- Programmatic navigation using useRouter:
+  - router.push('/path')
+  - router.back()
+  - router.forward()
+
+6. Route Groups
+-------------
+- Created using (groupName) folder syntax
+- Don't affect URL structure
+- Useful for organizing routes
+
+Best Practices
+-------------
+1. Use meaningful route names
+2. Keep route structure shallow when possible
+3. Use layout.jsx for shared UI elements
+4. Prefer Link component over programmatic navigation
+5. Handle 404 cases
